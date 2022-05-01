@@ -1,0 +1,1 @@
+web: build/install/dev.alimansour.borutoserver/bin/dev.alimansour.borutoserver
