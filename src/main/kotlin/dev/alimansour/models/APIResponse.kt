@@ -9,5 +9,5 @@ data class ApiResponse(
     val prevPage: Int? = null,
     val nextPage: Int? = null,
     val heroes: List<Hero> = emptyList(),
-    var lastUpdated: Long? = null
+    val lastUpdated: Long? = null
 )

@@ -43,6 +43,7 @@ class AllHeroesTest {
         pages.forEach { page ->
             println("Page: $page")
             client.get("/boruto/heroes?page=$page&limit=$limit").apply {
+                val actual = Json.decodeFromString<ApiResponse>(bodyAsText())
                 val expected = ApiResponse(
                     success = true,
                     message = "Ok",
@@ -61,10 +62,8 @@ class AllHeroesTest {
                         page = page,
                         limit = limit
                     ),
+                    lastUpdated = actual.lastUpdated
                 )
-                val actual = Json.decodeFromString<ApiResponse>(bodyAsText())
-                expected.lastUpdated = actual.lastUpdated
-
                 assertEquals(HttpStatusCode.OK, status)
                 assertEquals(expected = expected, actual = actual)
             }
