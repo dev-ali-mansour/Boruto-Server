@@ -2,15 +2,12 @@ package dev.alimansour.routes
 
 import dev.alimansour.models.ApiResponse
 import dev.alimansour.repository.HeroRepository
-import dev.alimansour.util.inject
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
-fun Route.getAllHeroes() {
-    val heroRepository: HeroRepository by inject()
-
+fun Route.getAllHeroes(heroRepository: HeroRepository) {
     get(path = "/boruto/heroes") {
         runCatching {
             val page = call.request.queryParameters["page"]?.toInt() ?: 1
